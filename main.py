@@ -80,6 +80,15 @@ def health():
     return {"status": "ok", "service": "baby-shower-rsvp-api"}
 
 
+@app.get("/debug-token")
+def debug_token():
+    """TEMPORAL: solo para diagnosticar el problema del token. Borrar despues."""
+    return {
+        "length": len(ADMIN_TOKEN),
+        "repr": repr(ADMIN_TOKEN),
+    }
+
+
 @app.post("/api/rsvp", response_model=RSVPOut)
 def create_rsvp(payload: RSVPCreate):
     db = SessionLocal()
